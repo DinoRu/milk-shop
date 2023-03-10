@@ -28,4 +28,8 @@ urlpatterns = [
     path('process/', views.payment_process, name="process"),
     path('success/', views.payment_success, name="sucess"),
     path('cancel/', views.payment_cancel, name='cancel'),
+
+    #About and contact
+    path('about/', views.about, name='about'),
+    
 ]

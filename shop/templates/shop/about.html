@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+<!-- ... -->
+{% load static %}
+<!-- ... -->
+{% block title %} About {% endblock title %}
+<!-- ... -->
+{% block slider %}
+
+<div
+	id="carouselExampleSlidesOnly"
+	class="carousel slide"
+	data-bs-ride="carousel"
+>
+	<div class="carousel-inner">
+		<div class="carousel-item active">
+			<img
+				class="d-block w-100"
+				src="{% static 'images/banner/b1.jpg'%}"
+				alt="First slide"
+			/>
+		</div>
+		<div class="carousel-item">
+			<img
+				class="d-block w-100"
+				src="{% static 'images/banner/b2.jpg' %}"
+				alt="Second slide"
+			/>
+		</div>
+		<div class="carousel-item">
+			<img
+				class="d-block w-100"
+				src="{% static 'images/banner/b3.jpg' %}"
+				alt="Third slide"
+			/>
+		</div>
+		<div class="carousel-item">
+			<img
+				class="d-block w-100"
+				src="{% static 'images/banner/b4.jpg' %}"
+				alt="Third slide"
+			/>
+		</div>
+	</div>
+</div>
+
+{% endblock slider %} {% block content %}
+<div class="container">
+	<div class="row my-5">
+		<h3>Neel Shop</h3>
+		<p>
+			Welcome to our dairy shop, where we offer a wide range of
+			high-quality dairy products to meet your every need! We take pride
+			in providing fresh and delicious milk, cheese, yogurt, butter, and
+			other dairy items sourced from local farms and trusted suppliers.
+			Our dairy products are free from artificial additives and
+			preservatives, ensuring that you get the best taste and nutrition in
+			every bite. Whether you are looking for a nutritious breakfast
+			option, a snack on the go, or ingredients for your favorite recipe,
+			we have you covered. Our friendly and knowledgeable staff is always
+			happy to help you find the perfect product to suit your taste and
+			dietary needs. In addition to our core dairy products, we also offer
+			seasonal items and specialty products, such as artisanal cheeses and
+			dairy-free alternatives, to cater to the diverse preferences of our
+			customers. At our dairy shop, we are committed to providing
+			exceptional customer service and making your shopping experience a
+			pleasant one. Come visit us today and taste the difference that
+			fresh, locally sourced dairy can make!
+		</p>
+	</div>
+</div>
+{% endblock content %}

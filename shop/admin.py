@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Product, Customer, Cart, Payment, Order, OrderItem
+from .models import Product, Customer, Cart, Payment, Order, OrderItem, Wishlist
 
 
 @admin.register(Product)
@@ -28,3 +28,7 @@ class OrderItemInline(admin.TabularInline):
 class Order(admin.ModelAdmin):
     list_display = ['id', 'customer','created', 'update', 'status', 'paid']
     inlines = [OrderItemInline]
+
+@admin.register(Wishlist)
+class Wishlist(admin.ModelAdmin):
+    list_display = ['id', 'user', 'product']

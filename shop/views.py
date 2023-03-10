@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views import View
-from .models import Product, Customer, Cart, Order, OrderItem
+from .models import Product, Customer, Cart, Order, OrderItem, Wishlist
 from django.db.models import Count, Q
 from .forms import CustomerRegForm, CustomerProfileForm
 from django.contrib import messages
@@ -14,6 +14,13 @@ stripe.api_key = settings.STRIPE_SECRET_KEY
 stripe.api_version = settings.STRIPE_API_VERSION
 
 def home(request):
+    user = request.user
+    
+    totalitem = 0
+    totalwish = 0
+    if user.is_authenticated:
+        totalitem = len(Cart.objects.filter(user=user))
+        totalwish = len(Wishlist.objects.filter(user=user))
     return render(request, 'shop/home.html', locals())
 
 
@@ -34,6 +41,7 @@ class CategoryTitleView(View):
 class ProductDetailView(View):
     def get(self, request, pk):
         product = get_object_or_404(Product, id=pk)
+        wishlist = Wishlist.objects.filter(Q(product=product) & Q(user=request.user))
         return render(request, 'shop/product_detail.html', locals())
 
 
@@ -112,6 +120,7 @@ def add_to_cart(request):
     product = Product.objects.get(id=product_id)
     Cart(user=user, product=product).save()
     return redirect('shop:cart')
+    
 
 #Show cart vue
 def show_cart(request):
@@ -124,6 +133,7 @@ def show_cart(request):
         amount += value
     totalamount = amount + 40
     return render(request, 'shop/cart.html', locals())
+
 
 #checkout view
 class CheckoutView(View):
@@ -154,8 +164,8 @@ class CheckoutView(View):
             amount += value
         totalamount = amount + 40
         request.session['order_id'] = order.id
-        cart.delete()
         return redirect(reverse('shop:process'))
+
 
 def payment_process(request):
     order_id = request.session.get('order_id', None)
@@ -200,6 +210,7 @@ def payment_process(request):
         })
         #create Stripe checkout session
         session = stripe.checkout.Session.create(**session_data)
+        cart.delete() 
         return redirect(session.url, code=303)
     else:
         return render(request, 'shop/process.html', locals())
@@ -280,3 +291,35 @@ def payment_success(request):
 
 def payment_cancel(request):
     return render(request, 'shop/canceled.html')
+
+
+def about(request):
+    return render(request, 'shop/about.html', locals())
+
+
+def plus_wishlist(request):
+    if request.method == 'GET':
+        prod_id = request.GET.get('prod_id')
+        product = Product.objects.get(id=prod_id)
+        Wishlist(user=request.user, product=product).save()
+        data = {
+        'message': 'Wishlist added successfulled'
+        }
+        return JsonResponse(data)
+
+def minus_wishlist(request):
+    if request.method == 'GET':
+        prod_id = request.GET.get('prod_id')
+        product = Product.objects.get(id=prod_id)
+        Wishlist.objects.filter(user=request.user, product=product).delete()
+        data = {
+            'message': 'Wishlist remove successfulled'
+        }
+        return JsonResponse(data)
+
+
+
+
+
+
+

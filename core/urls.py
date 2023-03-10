@@ -35,5 +35,11 @@ urlpatterns = [
     path('pluscart/', views.pluscart, name='plus-cart'),
     path('minuscart/', views.minuscart, name='minus-cart'),
     path('removecart/', views.removecart, name='remove-cart'),
+    path('pluswishlist/', views.plus_wishlist, name='plus_wishlist'),
+    path('minuswishlist/', views.minus_wishlist, name='minus_wishlist'),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+admin.site.site_header = 'Neel Shop'
+admin.site.site_title = 'Neel shop'
+admin.site.site_index_title = 'Neel shop'

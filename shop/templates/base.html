@@ -55,6 +55,7 @@
                 >Home</a
               >
             </li>
+            {% if user.is_authenticated %}
 
             <li class="nav-item dropdown">
               <a
@@ -111,7 +112,7 @@
               </ul>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">About</a>
+              <a class="nav-link" href="{% url 'shop:about' %}">About</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Contact Us</a>
@@ -164,11 +165,21 @@
               </ul>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'shop:cart' %}">Cart</a>
+              <a class="nav-link" href="{% url 'shop:cart' %}"
+                ><span class="badge bg-danger"
+                  >{% if totalitem > 0 %} {{totalitem}} {% endif %}</span
+                ><i class="fas fa-shopping-cart"></i
+              ></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Whishlist</a>
+              <a class="nav-link" href="#"
+                ><span class="badge bg-danger"
+                  >{% if totalwish > 0 %} {{ totalwish}} {% endif %}</span
+                ><i class="fas fa-heart"></i
+              ></a>
             </li>
+            {% else %}
+
             <li class="nav-item">
               <a class="nav-link" href="{% url 'shop:login' %}">Login</a>
             </li>
@@ -178,6 +189,7 @@
               >
             </li>
           </ul>
+          {% endif %}
         </div>
       </div>
     </nav>
