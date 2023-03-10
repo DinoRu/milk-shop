@@ -4,7 +4,12 @@
 
 <!-- block slider -->
 {% block slider %}
-<div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+
+<div
+  id="carouselExampleSlidesOnly"
+  class="carousel slide"
+  data-bs-ride="carousel"
+>
   <div class="carousel-inner">
     <div class="carousel-item active">
       <img
@@ -72,7 +77,7 @@
       "
     >
       <div class="goodnesssec buttermilk smbg">
-        <a href="">
+        <a href="{% url 'shop:category' 'GH' %}">
           <div class="goodnessseccont text-center">
             <img
               src="{% static 'images/buffalo-ghee.png' %}"
@@ -95,7 +100,7 @@
       "
     >
       <div class="goodnesssec buttermilk curdbgpro">
-        <a href="">
+        <a href="{% url 'shop:category' 'CR' %}">
           <div class="goodnessseccont text-center">
             <img
               src="{% static 'images/curd-total.png' %}"
@@ -118,7 +123,7 @@
       "
     >
       <div class="goodnesssec buttermilk buttermilk">
-        <a href="">
+        <a href="{% url 'shop:category' 'IC' %}">
           <div class="goodnessseccont text-center">
             <img
               src="{% static 'images/kulfi.png' %}"
@@ -144,7 +149,7 @@
       "
     >
       <div class="goodnesssec buttermilk smbg">
-        <a href="">
+        <a href="{% url 'shop:category' 'MS' %}">
           <div class="goodnessseccont text-center">
             <img
               src="{% static 'images/milk-shake-chocolate.png' %}"
@@ -167,7 +172,7 @@
       "
     >
       <div class="goodnesssec buttermilk curdbgpro">
-        <a href="">
+        <a href="{% url 'shop:category' 'ML' %}">
           <div class="goodnessseccont text-center">
             <img
               src="{% static 'images/cow-milk.png' %}"
@@ -190,14 +195,14 @@
       "
     >
       <div class="goodnesssec buttermilk buttermilk">
-        <a href="">
+        <a href="{% url 'shop:category' 'CZ' %}">
           <div class="goodnessseccont text-center">
             <img
-              src="{% static 'images/icbars.png' %}"
+              src="{% static 'images/processedcheese.png' %}"
               alt=""
               class="img-responsive center-block"
             />
-            <p class="mlkpro">Icebar</p>
+            <p class="mlkpro">CHEESE</p>
           </div>
         </a>
       </div>

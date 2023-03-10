@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+<!-- ... -->
+
+{% block title %} Pay your order {% endblock title %}
+<!-- ... -->
+{% block content %}
+<div class="container">
+	<div class="row mt-5">
+		<div class="col-sm-8 offset-1">
+			<h3>Order Summary</h3>
+			<hr />
+			{% for item in order.items.all %}
+			<div class="card mb-2">
+				<div class="card-body">
+					<h5>Product: {{ item.product.title }}</h5>
+					<p>Quantity: {{ item.quantity }}</p>
+					<p class="fw-bold">
+						Price: {{ item.product.discount_price }}
+					</p>
+				</div>
+			</div>
+			{% endfor %}
+			<p class="fw-bold">Total Cost + Rs. 40 = {{ totalamount }}</p>
+			<br />
+			<form action="{% url 'shop:process' %}" method="post">
+				<input type="submit" class="btn btn-warning" value="Pay now" />
+				{% csrf_token %}
+			</form>
+		</div>
+	</div>
+</div>
+<br /><br /><br />
+{% endblock content %}

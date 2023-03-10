@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+<!-- -->
+{% load static %}
+<!-- -->
+{% block title %}checkout{% endblock title %}
+<!-- -->
+{% block content %}
+<div class="container">
+	{% if messages %} {% for msg in messages %}
+	<div class="alert alert-danger" role="alert">{{ msg }}</div>
+	{% endfor %} {% endif %}
+	<div class="row mt-5">
+		<div class="col-sm-6">
+			<h3>Order Summary</h3>
+			<hr />
+			{% for item in cart_items %}
+			<div class="card mb-2">
+				<div class="card-body">
+					<h5>Product: {{ item.product.title }}</h5>
+					<p>Quantity: {{ item.quantity }}</p>
+					<p class="fw-bold">
+						Price: {{ item.product.discount_price }}
+					</p>
+				</div>
+			</div>
+			{% endfor %}
+			<p class="fw-bold">Total Cost + Rs. 40 = {{ totalamount }}</p>
+			<small
+				>Term and Condition: These terms and conditions outline the
+				rules and regulations for the use of Company Name's Website,
+				located at Website.com.</small
+			>
+		</div>
+		<div class="col-sm-4 offset-1">
+			<h4>Select Shipping Address</h4>
+			<hr />
+			<form method="post" id="myform">
+				{% csrf_token %}
+				<!-- -->
+				{% for ad in add %}
+				<div class="card">
+					<div class="card-body">
+						<h5>{{ ad.name }}</h5>
+						<p>Mobile: {{ ad.number }}</p>
+						<p>{{ ad.locality }} {{ ad.city }} {{ ad.zipcode }}</p>
+					</div>
+				</div>
+
+				<div class="form-check mt-3 mb-3">
+					<input
+						class="form-check-input"
+						type="radio"
+						name="custid"
+						value="{{ ad.id }}"
+						id="custadd{{ foorloop.counter }}"
+					/>
+					<label
+						class="form-check-label"
+						for="custadd{{forloop.counter}}"
+					>
+						Address: {{ forloop.counter }}
+					</label>
+				</div>
+
+				{% endfor %}
+				<br />
+				<div class="form-check mb-3">
+					<label class="form-label" for="totalamount">
+						Total Amount
+					</label>
+					<input
+						class="form-control"
+						type="number"
+						name="totalamount"
+						value="{{ totalamount }}"
+						id="totalamount"
+						readonly
+					/>
+				</div>
+				
+					<button
+						type="submit"
+						class="btn btn-warning mt-3 px-5 fw-bold"
+					>
+						Payment
+					</button>
+				</div>
+			</form>
+
+			<!-- ... -->
+
+		</div>
+	</div>
+</div>
+<br />
+<br /><br />
+{% endblock content %}

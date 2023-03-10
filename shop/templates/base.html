@@ -27,7 +27,7 @@
 
     <nav class="navbar navbar-expand-lg navbar-light bg-success">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="{% url 'shop:home' %}">
           <img
             src="{% static 'images/Neel.png' %}"
             alt=""
@@ -48,7 +48,12 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
+              <a
+                class="nav-link active"
+                aria-current="page"
+                href="{% url 'shop:home' %}"
+                >Home</a
+              >
             </li>
 
             <li class="nav-item dropdown">
@@ -137,35 +142,40 @@
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <li>
-                  <a class="dropdown-item" href="{% url 'shop:category' 'ML'%}"
+                  <a class="dropdown-item" href="{% url 'shop:profile' %}"
                     >Profile</a
                   >
                 </li>
                 <li>
-                  <a class="dropdown-item" href="{% url 'shop:category' 'CR'%}"
-                    >Orders</a
-                  >
+                  <a class="dropdown-item" href="">Orders</a>
                 </li>
                 <li>
-                  <a class="dropdown-item" href="{% url 'shop:category' 'MS'%}"
+                  <a
+                    class="dropdown-item"
+                    href="{% url 'shop:changepassword' %}"
                     >Change Password</a
                   >
                 </li>
                 <li>
-                  <a class="dropdown-item" href="{% url 'shop:category' 'GH'%}"
+                  <a class="dropdown-item" href="{% url 'shop:logout' %}"
                     >Logout</a
                   >
                 </li>
               </ul>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Cart</a>
+              <a class="nav-link" href="{% url 'shop:cart' %}">Cart</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Whishlist</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Login</a>
+              <a class="nav-link" href="{% url 'shop:login' %}">Login</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'shop:register' %}"
+                >Registration</a
+              >
             </li>
           </ul>
         </div>
@@ -186,21 +196,25 @@
     >
       Copyright &copy; 2023 | Develop by Diarra
     </footer>
-    <!-- Optional JavaScript -->
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"
+      integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
     <script src="{% static 'js/owl.carousel.min.js' %}"></script>
     <script src="{% static 'js/all.min.js' %}"></script>
     <script src="{% static 'js/myscript.js' %}"></script>
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script
-      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-      crossorigin="anonymous"
-    ></script>
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
       crossorigin="anonymous"
     ></script>
+    <!-- Optional JavaScript -->
+
+    <script src="{% static 'js/main.js' %}"></script>
   </body>
 </html>

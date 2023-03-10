@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+<br />
+{% load static %}
+<br />
+{% block content %}
+<div class="container">
+  <div class="row flex justify-content-between">
+    <div class="img2 col-lg-5 mt-5">
+      <img
+        src="{{ product.prod_image.url }}"
+        class="col-xs-6 col-sm-12 col-log-12 mt-3 text-sm-center image w-100 h-75"
+        alt=""
+      />
+    </div>
+    <div class="productdetail col-lg-5 mt-5">
+      <h1 class="fs-2">{{ product.title }}</h1>
+      <h5>Rs.{{ product.discount_price }}/-</h5>
+      <small class="text-decoration-line-through text-muted fs-5"
+        ><del>Rs.{{ product.selling_price}}/-</del></small
+      >
+      <br /><br />
+      <h4>Product Features</h4>
+      <ul class="fs-6">
+        <li>{{ product.description }}</li>
+      </ul>
+      <form action="{% url 'shop:add_to_cart' %}" class="d-inline">
+        <input type="hidden" name="product_id" value="{{ product.id }}" />
+        <button class="btn btn-danger" type="submit">Add to cart</button>
+      </form>
+
+      <button class="btn btn-dark" type="submit">Buy Now</button>
+    </div>
+  </div>
+</div>
+<br />
+<br />
+
+{% endblock content %}

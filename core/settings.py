@@ -125,3 +125,15 @@ MEDIA_ROOT = BASE_DIR / 'media'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+LOGIN_REDIRECT_URL = '/shop/profile/'
+
+
+# stripe settings
+STRIPE_PUBLISHABLE_KEY = 'pk_test_51IwoDYH76p1vi5bpy4nL6mJUlHqx0B5RlKtYt4CJK8tILWMhTB8XDzDLk53om47WSOY3BmoYFfQM2vHQ1UODv3JR00FB2bOYZj'
+STRIPE_SECRET_KEY = 'sk_test_51IwoDYH76p1vi5bpsIolpOrucjK3cmGyd0ubVgmR3cyBZhhTMNAZKaTNipJfgi16zpj5ui9AlMueulUeuH0jg4aL0091jfbwUs'
+STRIPE_API_VERSION = '2022-11-15'
+
+
+

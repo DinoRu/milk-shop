@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+<!-- -->
+{% block title %} address {% endblock title %}
+<!-- -->
+{% block content %}
+<div class="container my-5">
+	<div class="row">
+		<h3>Welcome <span class="text-capitalize">{{request.user }}</span></h3>
+		<br /><br />
+		<div class="col-sm-2 border-end">
+			<ul class="list-unstyled">
+				<li class="d-grid">
+					<a href="{% url 'shop:profile' %}" class="btn">Profile</a>
+				</li>
+				<li class="d-grid">
+					<a href="{% url 'shop:address' %}" class="btn btn-primary"
+						>Address</a
+					>
+				</li>
+			</ul>
+		</div>
+		<div class="col-sm-8 offset-1">
+			<div class="row">
+				{% for ad in add %}
+				<div class="col-sm-6">
+					<div class="card m-2">
+						<div class="card-body">
+							<h3 class="card-title">Address: {{ forloop.counter }}</h5>
+							
+							<p>name: {{ ad.name }}</p>
+							<p>Locality: {{ ad.locality }}</p>
+							<p>Mobile: {{ ad.number }}</p>
+							<p>City: {{ ad.city }}</p>
+							<p>State: {{ ad.state }}</p>
+							<p>Pincode: {{ ad.zipcode }}</p>
+							<p class="text-center"> <a href="{% url 'shop:update-profile' pk=ad.id %}" class="btn btn-success">Update</a></p>
+						</div>
+					</div>
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock content %}
