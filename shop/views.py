@@ -184,7 +184,10 @@ def payment_process(request):
             'mode': 'payment',
             'success_url': success_url,
             'cancel_url': cancel_url,
-            'line_items': []
+            'line_items': [],
+            'metadata': {
+                'order_id': order_id,
+            }
         }
         for item in order.items.all():
             session_data['line_items'].append({

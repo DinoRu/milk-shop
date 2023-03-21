@@ -4,6 +4,7 @@ from django.urls import reverse_lazy
 from django.contrib.auth.views import LoginView, PasswordResetView, PasswordChangeDoneView, PasswordChangeView, LogoutView
 from django.contrib.auth import views as auth_view
 from .forms import LoginForm, MyPasswordResetForm, MyPasswordChangeForm, MySetPasswordForm
+from . import webhook
 
 app_name = 'shop'
 urlpatterns = [
@@ -31,5 +32,4 @@ urlpatterns = [
 
     #About and contact
     path('about/', views.about, name='about'),
-    
 ]

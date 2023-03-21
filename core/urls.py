@@ -20,6 +20,7 @@ from django.conf.urls.static import static
 from django.contrib.auth import views as auth_view
 from shop.forms import MyPasswordResetForm, MySetPasswordForm
 from shop import views
+from shop import webhook
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -37,6 +38,7 @@ urlpatterns = [
     path('removecart/', views.removecart, name='remove-cart'),
     path('pluswishlist/', views.plus_wishlist, name='plus_wishlist'),
     path('minuswishlist/', views.minus_wishlist, name='minus_wishlist'),
+    path('payment/webhook/', webhook.stripe_webhook, name="stripe-webhook"),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
